@@ -224,5 +224,5 @@ jobs:
           failureStates: |
             failure
             cancelled
-          sha: "$GITHUB_SHA"
+          sha: ${{  github.sha }}
           targetUrl: ${{ format('{0}/actions/runs/{1}', github.event.pull_request.base.repo.html_url, github.run_id) }}
