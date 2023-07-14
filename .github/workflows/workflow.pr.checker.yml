@@ -1,7 +1,7 @@
 name: PR Quality Checker
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       -  opened
       -  converted_to_draft
@@ -154,10 +154,7 @@ jobs:
       - markdownlint
       - lychee
       - shellcheck
-    permissions:
-      pull-requests: write
-      checks: write
-      statuses: write
+    permissions: write-all
     env:
       COMMENT_IDENTIFIER: ${{ format('<!-- workflow="{0}" job="{1}" -->', github.workflow, github.job) }}
     steps:
