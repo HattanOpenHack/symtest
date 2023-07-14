@@ -1,7 +1,7 @@
 name: PR Quality Checker
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       -  opened
       -  converted_to_draft
@@ -212,17 +212,17 @@ jobs:
           echo "GITHUB_SHA=$GITHUB_SHA"
           #${{ github.event.pull_request.base.sha || github.sha }}
         
-      - name: Set Check Status
-        uses: maxisam/create-summary-check-status@v1.1.0
-        with:
-          jobResults: |
-            ${{ needs.markdownlint.result }}
-            ${{ needs.lychee.result }}
-            ${{ needs.shellcheck.result }}
-          authToken: ${{ github.token }}
-          checkName: PR QUALITY
-          failureStates: |
-            failure
-            cancelled
-          sha: ${{  github.event.pull_request.base.sha  }}
-          targetUrl: ${{ format('{0}/actions/runs/{1}', github.event.pull_request.base.repo.html_url, github.run_id) }}
+#       - name: Set Check Status
+#         uses: maxisam/create-summary-check-status@v1.1.0
+#         with:
+#           jobResults: |
+#             ${{ needs.markdownlint.result }}
+#             ${{ needs.lychee.result }}
+#             ${{ needs.shellcheck.result }}
+#           authToken: ${{ github.token }}
+#           checkName: PR QUALITY
+#           failureStates: |
+#             failure
+#             cancelled
+#           sha: ${{  github.event.pull_request.base.sha  }}
+#           targetUrl: ${{ format('{0}/actions/runs/{1}', github.event.pull_request.base.repo.html_url, github.run_id) }}
