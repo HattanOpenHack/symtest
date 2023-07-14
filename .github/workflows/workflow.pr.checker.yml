@@ -154,7 +154,10 @@ jobs:
       - markdownlint
       - lychee
       - shellcheck
-    permissions: write-all
+    permissions:
+      pull-requests: write
+      checks: write
+      statuses: write
     env:
       COMMENT_IDENTIFIER: ${{ format('<!-- workflow="{0}" job="{1}" -->', github.workflow, github.job) }}
     steps:
