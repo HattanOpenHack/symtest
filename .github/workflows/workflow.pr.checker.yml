@@ -204,14 +204,7 @@ jobs:
         with:
           type: delete
           comment_id: ${{ steps.find-comment.outputs.comment-id }}
-      
-      - name: Debug
-        run: |
-          echo "github.event.pull_request.base.sha= ${{ github.event.pull_request.base.sha }}"
-          echo "github.sha=${{ github.sha }}"
-          echo "GITHUB_SHA=$GITHUB_SHA"
-          #${{ github.event.pull_request.base.sha || github.sha }}
-        
+
 #       - name: Set Check Status
 #         uses: maxisam/create-summary-check-status@v1.1.0
 #         with:
@@ -224,5 +217,5 @@ jobs:
 #           failureStates: |
 #             failure
 #             cancelled
-#           sha: ${{  github.event.pull_request.base.sha  }}
+#           sha: ${{ github.event.pull_request.head.sha || github.sha }}
 #           targetUrl: ${{ format('{0}/actions/runs/{1}', github.event.pull_request.base.repo.html_url, github.run_id) }}
